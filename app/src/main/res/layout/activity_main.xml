@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity"
+    android:gravity="center">
+
+    <com.example.heavn.fanfan.Util.CircleImageView
+        android:id="@+id/head"
+        android:layout_width="100dp"
+        android:scaleType="centerCrop"
+        app:border_width="3dp"
+        android:layout_height="100dp" />
+    
+    <Button
+        android:id="@+id/customer"
+        android:textSize="20sp"
+        android:text="顾     客"
+        android:background="@drawable/button_blue"
+        android:textColor="@color/white"
+        android:layout_marginTop="40dp"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+         />
+
+    <Button
+        android:id="@+id/sales"
+        android:textSize="20sp"
+        android:text="商     家"
+        android:background="@drawable/button_blue"
+        android:textColor="@color/white"
+        android:layout_marginTop="20dp"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/rider"
+        android:textSize="20sp"
+        android:background="@drawable/button_blue"
+        android:textColor="@color/white"
+        android:text="骑     手"
+        android:layout_marginTop="20dp"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content" />
+
+
+    <Button
+        android:id="@+id/backstage"
+        android:textSize="20sp"
+        android:text="后     台"
+        android:background="@drawable/button_blue"
+        android:textColor="@color/white"
+        android:layout_marginTop="20dp"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content" />
+
+
+</LinearLayout>

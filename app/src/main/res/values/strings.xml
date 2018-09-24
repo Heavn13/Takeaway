@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">饭饭</string>
+    <string name="bar_store">我的商店</string>
+    <string name="bar_detail">商家中心</string>
+    <string name="bar_home">我的订单</string>
+    <string name="bar_rider">骑手中心</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+</resources>

@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <ImageView
+        android:id="@+id/head"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="100dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/nopicture" />
+
+    <LinearLayout
+        android:layout_below="@id/linearLayout"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/name"
+            android:text="sales_name"
+            android:gravity="center"
+            android:textSize="20sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <LinearLayout
+            android:weightSum="10"
+            android:gravity="center"
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:src="@drawable/red_star"
+                android:layout_width="18dp"
+                android:layout_height="18dp" />
+            <TextView
+                android:id="@+id/rank"
+                android:text="0.0"
+                android:gravity="center"
+                android:textColor="@color/red"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:text="月售"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/sales"
+                android:text="0"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/introduction"
+            android:layout_marginTop="5dp"
+            android:text="商家简介"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_marginTop="30dp"
+        android:layout_height="40dp">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="3"
+            android:text="商家地址"
+            android:gravity="center_vertical"
+            android:paddingLeft="10dp"
+            android:textColor="#000"
+            android:textSize="20dp"
+            android:layout_height="match_parent" />
+        <TextView
+            android:id="@+id/address"
+            android:layout_width="0dp"
+            android:text="地址"
+            android:gravity="right|center_vertical"
+            android:textSize="15dp"
+            android:paddingRight="10dp"
+            android:layout_weight="7"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="40dp">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="3"
+            android:text="商家电话"
+            android:gravity="center_vertical"
+            android:paddingLeft="10dp"
+            android:textColor="#000"
+            android:textSize="20dp"
+            android:layout_height="match_parent" />
+        <TextView
+            android:id="@+id/phone"
+            android:layout_width="0dp"
+            android:text="电话"
+            android:gravity="right|center_vertical"
+            android:textSize="15dp"
+            android:paddingRight="10dp"
+            android:layout_weight="7"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+
+
+
+
+
+
+
+</LinearLayout>

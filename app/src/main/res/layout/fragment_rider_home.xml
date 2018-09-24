@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@color/blue"
+        android:weightSum="3">
+        <RadioButton
+            android:id="@+id/new_order"
+            android:button="@null"
+            android:gravity="center"
+            android:text="新的订单"
+            android:background="@drawable/check_selector"
+            android:textSize="15sp"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"/>
+
+        <RadioButton
+            android:id="@+id/accept_order"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:background="@drawable/check_selector"
+            android:button="@null"
+            android:gravity="center"
+            android:text="待完成订单"
+            android:textSize="15sp"/>
+
+        <RadioButton
+            android:id="@+id/finish_order"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:background="@drawable/check_selector"
+            android:button="@null"
+            android:gravity="center"
+            android:text="已完成订单"
+            android:textSize="15sp"/>
+    </RadioGroup>
+
+    <FrameLayout
+        android:id="@+id/rider_home_frameLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"></FrameLayout>
+
+</LinearLayout>

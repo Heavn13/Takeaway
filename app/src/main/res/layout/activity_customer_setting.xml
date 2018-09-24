@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:gravity="center_horizontal"
+    android:layout_height="match_parent">
+    <!--顶部导航栏-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:weightSum="10"
+        android:background="@color/blue"
+        android:gravity="center_vertical">
+        <ImageView
+            android:id="@+id/back"
+            android:layout_weight="1"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/back"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="9"
+            android:gravity="center"
+            android:paddingRight="40dp"
+            android:text="系统设置"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/change_login_password"
+        android:layout_width="300dp"
+        android:layout_marginTop="100dp"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:textColor="@color/white"
+        android:background="@drawable/button_blue"
+        android:text="修改登录密码"/>
+    <Button
+        android:id="@+id/change_pay_password"
+        android:layout_width="300dp"
+        android:layout_marginTop="20dp"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:textColor="@color/white"
+        android:background="@drawable/button_blue"
+        android:text="修改支付密码"/>
+    <Button
+        android:id="@+id/change_user_detail"
+        android:layout_width="300dp"
+        android:layout_marginTop="20dp"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:textColor="@color/white"
+        android:background="@drawable/button_blue"
+        android:text="修改个人资料"/>
+    <Button
+        android:id="@+id/change_address"
+        android:layout_width="300dp"
+        android:layout_marginTop="20dp"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:textColor="@color/white"
+        android:background="@drawable/button_blue"
+        android:text="收货地址设置"/>
+    <Button
+        android:id="@+id/logout"
+        android:layout_width="300dp"
+        android:layout_marginTop="20dp"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:textColor="@color/white"
+        android:background="@drawable/button_blue"
+        android:text="注销账号"/>
+
+
+</LinearLayout>

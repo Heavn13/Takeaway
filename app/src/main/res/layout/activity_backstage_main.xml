@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linearLayout"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_height="match_parent">
+
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@color/blue"
+        android:weightSum="2">
+        <RadioButton
+            android:id="@+id/radioButton_sales"
+            android:button="@null"
+            android:gravity="center"
+            android:text="商家"
+            android:textSize="15sp"
+            android:background="@drawable/check_selector"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"/>
+
+        <RadioButton
+            android:id="@+id/radioButton_rider"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:button="@null"
+            android:background="@drawable/check_selector"
+            android:gravity="center"
+            android:text="骑手"
+            android:textSize="15sp"/>
+    </RadioGroup>
+
+
+    <FrameLayout
+        android:id="@+id/frameLayout"
+        android:layout_below="@id/radioGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"></FrameLayout>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/floatButton"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="30dp"
+        android:layout_marginEnd="30dp"
+        app:backgroundTint="@color/blue"
+        android:src="@drawable/exit"
+        app:fabSize="normal"
+        app:layout_anchorGravity="top"
+        app:rippleColor="@color/white"
+        tools:layout_editor_absoluteX="300dp"
+        tools:layout_editor_absoluteY="480dp" />
+</RelativeLayout>

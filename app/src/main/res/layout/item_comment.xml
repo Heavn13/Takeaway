@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_margin="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:gravity="center_vertical"
+            android:layout_height="wrap_content">
+
+            <com.android.volley.toolbox.NetworkImageView
+                android:id="@+id/head"
+                android:background="@drawable/nopicture"
+                android:scaleType="centerCrop"
+                android:layout_width="50dp"
+                android:layout_height="50dp" />
+
+            <TextView
+                android:id="@+id/name"
+                android:text="username"
+                android:textSize="18sp"
+                android:layout_marginLeft="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:weightSum="10"
+            android:layout_marginTop="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:id="@+id/rank"
+                android:layout_width="0dp"
+                android:orientation="horizontal"
+                android:paddingLeft="20dp"
+                android:layout_weight="7"
+                android:paddingRight="20dp"
+                android:layout_height="35dp">
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:scaleType="center"
+                    android:src="@drawable/unselect"
+                    android:layout_height="match_parent" />
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:scaleType="center"
+                    android:src="@drawable/unselect"
+                    android:layout_height="match_parent" />
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:scaleType="center"
+                    android:src="@drawable/unselect"
+                    android:layout_height="match_parent" />
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:scaleType="center"
+                    android:src="@drawable/unselect"
+                    android:layout_height="match_parent" />
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:scaleType="center"
+                    android:src="@drawable/unselect"
+                    android:layout_height="match_parent" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/rank_text"
+                android:text="超赞！"
+                android:gravity="center"
+                android:textSize="20sp"
+                android:textColor="@color/red"
+                android:layout_width="0dp"
+                android:layout_weight="3"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/text"
+            android:text="暂无评论"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:textSize="18sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/time"
+            android:gravity="right"
+            android:text="评论时间"
+            android:textSize="12sp"
+            android:paddingRight="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+
+    </LinearLayout>
+
+
+
+
+
+</LinearLayout>

@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!--顶部导航栏-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="center_vertical"
+        android:background="@color/blue"
+        android:weightSum="10"
+        android:orientation="horizontal">
+        <ImageView
+            android:id="@+id/back"
+            android:layout_weight="1"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/back"/>
+        <TextView
+            android:id="@+id/name"
+            android:text="sales_name"
+            android:textSize="20sp"
+            android:textColor="@color/white"
+            android:layout_width="0dp"
+            android:layout_weight="5"
+            android:layout_height="wrap_content" />
+        <LinearLayout
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:layout_weight="4"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:src="@drawable/red_star"
+                android:layout_width="18dp"
+                android:layout_height="18dp" />
+            <TextView
+                android:id="@+id/rank"
+                android:text="0.0"
+                android:gravity="center"
+                android:textColor="@color/red"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:text="月售"
+                android:textColor="@color/white"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/sales"
+                android:text="0"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+        <!--<RelativeLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content">-->
+
+            <!--<LinearLayout-->
+                <!--android:id="@+id/linearLayout"-->
+                <!--android:orientation="vertical"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="30dp"-->
+                <!--android:background="@color/blue">-->
+
+            <!--</LinearLayout>-->
+
+            <!--<FrameLayout-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_centerHorizontal="true">-->
+                <!--<ImageView-->
+                    <!--android:id="@+id/head"-->
+                    <!--android:scaleType="centerCrop"-->
+                    <!--android:layout_width="75dp"-->
+                    <!--android:layout_height="75dp"-->
+                    <!--android:layout_weight="1"-->
+                    <!--android:src="@drawable/nopicture" />-->
+            <!--</FrameLayout>-->
+
+            <!--<LinearLayout-->
+                <!--android:layout_below="@id/linearLayout"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:orientation="vertical"-->
+                <!--android:gravity="center_horizontal"-->
+                <!--android:layout_marginTop="45dp"-->
+                <!--android:layout_height="wrap_content">-->
+                <!---->
+                <!--<LinearLayout-->
+                    <!--android:weightSum="10"-->
+                    <!--android:gravity="center"-->
+                    <!--android:layout_marginTop="5dp"-->
+                    <!--android:orientation="horizontal"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content">-->
+                    <!--<ImageView-->
+                        <!--android:src="@drawable/red_star"-->
+                        <!--android:layout_width="18dp"-->
+                        <!--android:layout_height="18dp" />-->
+                    <!--<TextView-->
+                        <!--android:id="@+id/rank"-->
+                        <!--android:text="0.0"-->
+                        <!--android:gravity="center"-->
+                        <!--android:textColor="@color/red"-->
+                        <!--android:layout_weight="1"-->
+                        <!--android:layout_width="0dp"-->
+                        <!--android:layout_height="wrap_content" />-->
+
+                    <!--<TextView-->
+                        <!--android:text="月售"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content" />-->
+
+                    <!--<TextView-->
+                        <!--android:id="@+id/sales"-->
+                        <!--android:text="0"-->
+                        <!--android:gravity="center"-->
+                        <!--android:layout_weight="1"-->
+                        <!--android:layout_width="0dp"-->
+                        <!--android:layout_height="wrap_content" />-->
+                <!--</LinearLayout>-->
+
+                <!--<TextView-->
+                    <!--android:id="@+id/introduction"-->
+                    <!--android:layout_marginTop="5dp"-->
+                    <!--android:text="商家简介"-->
+                    <!--android:gravity="center"-->
+                    <!--android:layout_weight="1"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content" />-->
+            <!--</LinearLayout>-->
+
+        <!--</RelativeLayout>-->
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@color/blue"
+        android:weightSum="3">
+        <RadioButton
+            android:id="@+id/order"
+            android:button="@null"
+            android:gravity="center"
+            android:text="点餐"
+            android:background="@drawable/check_selector"
+            android:textSize="15sp"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"/>
+
+        <RadioButton
+            android:id="@+id/comment"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:background="@drawable/check_selector"
+            android:button="@null"
+            android:gravity="center"
+            android:text="评价"
+            android:textSize="15sp"/>
+
+        <RadioButton
+            android:id="@+id/detail"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:background="@drawable/check_selector"
+            android:button="@null"
+            android:gravity="center"
+            android:text="商家"
+            android:textSize="15sp"/>
+    </RadioGroup>
+
+    <FrameLayout
+        android:id="@+id/frameLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></FrameLayout>
+
+</LinearLayout>

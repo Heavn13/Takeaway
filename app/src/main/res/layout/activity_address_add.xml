@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal">
+
+    <!--顶部导航栏-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="center_vertical"
+        android:background="@color/blue"
+        android:orientation="horizontal">
+        <ImageView
+            android:id="@+id/back"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/back"/>
+        <TextView
+            android:text="添加地址"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:gravity="center"
+            android:paddingRight="50dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/name"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:hint="收货人姓名"
+        android:maxLength="10"
+        android:maxLines="1"
+        android:paddingLeft="10dp"/>
+
+    <EditText
+        android:id="@+id/receive_phone"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:hint="收货人联系方式"
+        android:maxLength="11"
+        android:maxLines="1"
+        android:paddingLeft="10dp"/>
+
+    <EditText
+        android:id="@+id/address"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:hint="收货人地址"
+        android:maxLength="50"
+        android:maxLines="1"
+        android:paddingLeft="10dp"/>
+
+    <LinearLayout
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:weightSum="8"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginTop="20dp"
+        >
+        <TextView
+            android:text="是否设为默认地址："
+            android:paddingLeft="10dp"
+            android:textSize="16sp"
+            android:layout_weight="4.5"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+        <RadioGroup
+            android:id="@+id/radioGroup"
+            android:layout_weight="3.5"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <RadioButton
+                android:id="@+id/yes"
+                android:text="是"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <RadioButton
+                android:id="@+id/no"
+                android:text="否"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </RadioGroup>
+    </LinearLayout>
+
+
+
+    <Button
+        android:id="@+id/add_address"
+        android:text="添加地址"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        android:background="@drawable/button_blue"
+        android:layout_marginTop="50dp"
+        android:layout_width="300dp"
+        android:layout_height="50dp" />
+
+
+
+</LinearLayout>
