@@ -1,7 +1,6 @@
 package com.example.heavn.fanfan.Bean;
 
 /**
- * 商家订单类
  * Created by Administrator on 2018/9/15 0015.
  */
 
@@ -10,6 +9,15 @@ public class SalesOrder {
     private int customer_rank,rider_rank,sales_rank;
     private boolean receive,finish,punctuality;
     private long order_time,arrival_time;
+    private float total_price;
+
+    public float getTotal_price() {
+        return total_price;
+    }
+
+    public void setTotal_price(float total_price) {
+        this.total_price = total_price;
+    }
 
     public String getName() {
         return name;

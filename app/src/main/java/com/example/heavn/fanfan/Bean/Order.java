@@ -1,15 +1,15 @@
 package com.example.heavn.fanfan.Bean;
 
 /**
- * 订单类
  * Created by Administrator on 2018/9/15 0015.
  */
 
 public class Order {
-    private String id,customer_user,rider_user,rider_username,sales_user,customer_text,rider_text,sales_text;
+    private String id,customer_user,rider_user,sales_user,customer_text,rider_text,sales_text,name,receive_phone,address;
     private int customer_rank,rider_rank,sales_rank;
     private boolean receive,finish,punctuality;
     private long order_time,arrival_time;
+    private float total_price;
 
     public String getId() {
         return id;
@@ -17,14 +17,6 @@ public class Order {
 
     public void setId(String id) {
         this.id = id;
-    }
-
-    public String getRider_username() {
-        return rider_username;
-    }
-
-    public void setRider_username(String rider_username) {
-        this.rider_username = rider_username;
     }
 
     public String getCustomer_user() {
@@ -137,5 +129,37 @@ public class Order {
 
     public void setArrival_time(long arrival_time) {
         this.arrival_time = arrival_time;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getReceive_phone() {
+        return receive_phone;
+    }
+
+    public void setReceive_phone(String receive_phone) {
+        this.receive_phone = receive_phone;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public float getTotal_price() {
+        return total_price;
+    }
+
+    public void setTotal_price(float total_price) {
+        this.total_price = total_price;
     }
 }

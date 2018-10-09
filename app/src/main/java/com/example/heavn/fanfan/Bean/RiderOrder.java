@@ -1,15 +1,31 @@
 package com.example.heavn.fanfan.Bean;
 
 /**
- * 骑手订单类
  * Created by Administrator on 2018/9/16 0016.
  */
 
 public class RiderOrder {
-    private String id,customer_user,rider_user,sales_user,customer_text,rider_text,sales_text,name,receive_phone,customer_address,sales_username,sales_address;
+    private String id,customer_user,rider_user,sales_user,customer_text,rider_text,sales_text,name,receive_phone,address,sales_username,sales_address;
     private int customer_rank,rider_rank,sales_rank;
-    private boolean receive,finish,punctuality;
+    private boolean receive,finish;
     private long order_time,arrival_time;
+    private float total_price;
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public float getTotal_price() {
+        return total_price;
+    }
+
+    public void setTotal_price(float total_price) {
+        this.total_price = total_price;
+    }
 
     public String getSales_username() {
         return sales_username;
@@ -41,14 +57,6 @@ public class RiderOrder {
 
     public void setReceive_phone(String receive_phone) {
         this.receive_phone = receive_phone;
-    }
-
-    public String getCustomer_address() {
-        return customer_address;
-    }
-
-    public void setCustomer_address(String customer_address) {
-        this.customer_address = customer_address;
     }
 
     public String getId() {
@@ -145,14 +153,6 @@ public class RiderOrder {
 
     public void setFinish(boolean finish) {
         this.finish = finish;
-    }
-
-    public boolean isPunctuality() {
-        return punctuality;
-    }
-
-    public void setPunctuality(boolean punctuality) {
-        this.punctuality = punctuality;
     }
 
     public long getOrder_time() {

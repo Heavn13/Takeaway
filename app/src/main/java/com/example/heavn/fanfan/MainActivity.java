@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.heavn.fanfan.Backstage.BackstageMainActivity;
 import com.example.heavn.fanfan.Util.BaseActivity;
 import com.example.heavn.fanfan.Util.MyApp;
 
@@ -82,7 +83,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
                 break;
             case R.id.backstage:
                 intent = new Intent(MainActivity.this,LoginActivity.class);
-                app.setUser_type("administrator");
+//                app.setUser_type("administrator");
                 startActivity(intent);
                 break;
             default:

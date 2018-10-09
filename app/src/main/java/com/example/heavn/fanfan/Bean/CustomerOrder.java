@@ -1,17 +1,17 @@
 package com.example.heavn.fanfan.Bean;
 
 /**
- * 顾客订单类
  * Created by Administrator on 2018/9/19 0019.
  */
 
 public class CustomerOrder {
     private String id,customer_user,rider_user,sales_user,customer_text,rider_text,sales_text,customer_username,rider_username,sales_username,sales_address,name,receive_phone,address,sales_head;
     private int customer_rank,rider_rank,sales_rank;
-    private boolean receive,finish,punctuality;
+    private boolean receive,finish;
     private long order_time,arrival_time;
+    private float total_price;
 
-    public CustomerOrder(String id, String customer_user, String rider_user, String sales_user, String customer_text, String rider_text, String sales_text,String rider_username, String sales_username, String sales_address, String name, String receive_phone, String address, int customer_rank, int rider_rank, int sales_rank, boolean receive, boolean finish, boolean punctuality, long order_time, long arrival_time) {
+    public CustomerOrder(String id, String customer_user, String rider_user, String sales_user, String customer_text, String rider_text, String sales_text, String customer_username, String rider_username, String sales_username, String sales_address, String name, String receive_phone, String address, String sales_head, int customer_rank, int rider_rank, int sales_rank, boolean receive, boolean finish, long order_time, long arrival_time, float total_price) {
         this.id = id;
         this.customer_user = customer_user;
         this.rider_user = rider_user;
@@ -19,20 +19,30 @@ public class CustomerOrder {
         this.customer_text = customer_text;
         this.rider_text = rider_text;
         this.sales_text = sales_text;
+        this.customer_username = customer_username;
         this.rider_username = rider_username;
         this.sales_username = sales_username;
         this.sales_address = sales_address;
         this.name = name;
         this.receive_phone = receive_phone;
         this.address = address;
+        this.sales_head = sales_head;
         this.customer_rank = customer_rank;
         this.rider_rank = rider_rank;
         this.sales_rank = sales_rank;
         this.receive = receive;
         this.finish = finish;
-        this.punctuality = punctuality;
         this.order_time = order_time;
         this.arrival_time = arrival_time;
+        this.total_price = total_price;
+    }
+
+    public float getTotal_price() {
+        return total_price;
+    }
+
+    public void setTotal_price(float total_price) {
+        this.total_price = total_price;
     }
 
     public String getSales_head() {
@@ -193,14 +203,6 @@ public class CustomerOrder {
 
     public void setFinish(boolean finish) {
         this.finish = finish;
-    }
-
-    public boolean isPunctuality() {
-        return punctuality;
-    }
-
-    public void setPunctuality(boolean punctuality) {
-        this.punctuality = punctuality;
     }
 
     public long getOrder_time() {

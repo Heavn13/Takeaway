@@ -74,7 +74,7 @@ public class RiderOrderAdapter extends BaseAdapter {
         holder.id.setText(list.get(i).getId());
         holder.order_time.setText(DateUtil.getTime(list.get(i).getOrder_time()));
         holder.customer_user.setText(list.get(i).getName());
-        holder.customer_address.setText(list.get(i).getCustomer_address());
+        holder.customer_address.setText(list.get(i).getAddress());
         holder.sales_user.setText(list.get(i).getSales_username());
         holder.sales_address.setText(list.get(i).getSales_address());
         if(!list.get(i).getRider_user().equals("")){

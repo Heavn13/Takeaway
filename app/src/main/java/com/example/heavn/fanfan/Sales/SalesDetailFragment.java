@@ -18,6 +18,7 @@ import android.widget.Toast;
 
 import com.example.heavn.fanfan.Backstage.BackstageMainActivity;
 import com.example.heavn.fanfan.Bean.SalesBean;
+import com.example.heavn.fanfan.Bean.SalesDetail;
 import com.example.heavn.fanfan.Bean.SalesOrder;
 import com.example.heavn.fanfan.Customer.CustomerMainActivity;
 import com.example.heavn.fanfan.LoginActivity;
@@ -56,7 +57,7 @@ public class SalesDetailFragment extends Fragment implements View.OnClickListene
     private TextView username, verify;
     private Button logout;
     private ImageView order, bill;
-    private TextView count;
+    private TextView count,rank,sales;
     private LinearLayout detail;
     private List<SalesOrder> orderList = new ArrayList<>();
     private MyApp app;
@@ -76,6 +77,8 @@ public class SalesDetailFragment extends Fragment implements View.OnClickListene
         detail = view.findViewById(R.id.background);
         detail.setOnClickListener(this);
         count = view.findViewById(R.id.count);
+        sales = view.findViewById(R.id.sales);
+        rank = view.findViewById(R.id.rank);
 
         order = view.findViewById(R.id.order);
         order.setOnClickListener(this);
@@ -158,14 +161,16 @@ public class SalesDetailFragment extends Fragment implements View.OnClickListene
                     getActivity().runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            SalesBean sales = new Gson().fromJson(res, SalesBean.class);
+                            SalesDetail salesDetail = new Gson().fromJson(res, SalesDetail.class);
                             ImageDownloadTask imgTask = new ImageDownloadTask();
-                            if (sales.getHead() != null)
-                                imgTask.execute(sales.getHead(), head);
-                            username.setText(sales.getUsername());
-                            if (sales.getVerify()) {
+                            if (salesDetail.getHead() != null)
+                                imgTask.execute(salesDetail.getHead(), head);
+                            username.setText(salesDetail.getUsername());
+                            if (salesDetail.getVerify()) {
                                 verify.setText("已认证");
                             }
+                            rank.setText(""+salesDetail.getRank());
+                            sales.setText(""+salesDetail.getSales_number());
                         }
                     });
                 }

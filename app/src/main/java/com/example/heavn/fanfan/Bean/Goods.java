@@ -1,14 +1,9 @@
 package com.example.heavn.fanfan.Bean;
 
-/**
- * 商家的商品类
- * Created by Administrator on 2018/9/19 0019.
- */
-
 public class Goods {
     private String phone,name,type,introduction,picture;
     private float price;
-    private int sales,praise, discount;
+    private int sales,discount;
 
     public String getPhone() {
         return phone;
@@ -74,11 +69,4 @@ public class Goods {
         this.sales = sales;
     }
 
-    public int getPraise() {
-        return praise;
-    }
-
-    public void setPraise(int praise) {
-        this.praise = praise;
-    }
 }

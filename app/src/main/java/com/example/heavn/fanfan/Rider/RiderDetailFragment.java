@@ -42,7 +42,7 @@ import okhttp3.Response;
 
 public class RiderDetailFragment extends Fragment implements View.OnClickListener{
     private CircleImageView head;
-    private TextView username,verify;
+    private TextView username,verify,order_count;
     private Button logout;
     private LinearLayout detail;
     private MyApp app;
@@ -58,6 +58,7 @@ public class RiderDetailFragment extends Fragment implements View.OnClickListene
         head = view.findViewById(R.id.head);
         username = view.findViewById(R.id.username);
         verify = view.findViewById(R.id.verify);
+        order_count = view.findViewById(R.id.order_count);
 
         detail = view.findViewById(R.id.background);
         detail.setOnClickListener(this);
@@ -133,6 +134,7 @@ public class RiderDetailFragment extends Fragment implements View.OnClickListene
                                     if(rider.getVerify()){
                                         verify.setText("已认证");
                                     }
+                                    order_count.setText(""+rider.getOrder_count());
                                 }
                             });
                         }

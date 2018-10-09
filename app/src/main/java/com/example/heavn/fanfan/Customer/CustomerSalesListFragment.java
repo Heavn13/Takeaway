@@ -247,7 +247,7 @@ public class CustomerSalesListFragment extends Fragment implements View.OnClickL
     private void getTotalPrice(){
         RequestBody requestBody = new FormBody.Builder().add("phone",salesDetail.getPhone()).build();
         final Request.Builder builder = new Request.Builder();
-        Request request = builder.url(app.getUrl()+"//GetSalesAllGoods").post(requestBody).build();
+        Request request = builder.url(app.getUrl()+"/GetSalesAllGoods").post(requestBody).build();
         Call call = okHttpClient.newCall(request);
         //执行Call
         call.enqueue(new Callback() {

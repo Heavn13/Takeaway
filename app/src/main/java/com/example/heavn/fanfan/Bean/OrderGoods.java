@@ -1,7 +1,6 @@
 package com.example.heavn.fanfan.Bean;
 
 /**
- * 订单中的商品类
  * Created by Administrator on 2018/9/15 0015.
  */
 

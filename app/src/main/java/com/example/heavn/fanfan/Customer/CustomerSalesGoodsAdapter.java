@@ -80,7 +80,6 @@ public class CustomerSalesGoodsAdapter extends BaseAdapter {
             //实例化对象
             holder.picture = view.findViewById(R.id.picture);
             holder.name = view.findViewById(R.id.name);
-            holder.praise = view.findViewById(R.id.praise);
             holder.price = view.findViewById(R.id.price);
             holder.discount = view.findViewById(R.id.discount);
             holder.sales = view.findViewById(R.id.sales);
@@ -102,7 +101,6 @@ public class CustomerSalesGoodsAdapter extends BaseAdapter {
         holder.name.setText(list.get(i).getName());
         holder.introduction.setText(list.get(i).getIntroduction());
         holder.sales.setText(""+list.get(i).getSales());
-        holder.praise.setText(""+list.get(i).getPraise());
         if(list.get(i).getDiscount() != 10){
             holder.discount.setText(""+list.get(i).getDiscount()+"折");
         }
@@ -189,7 +187,7 @@ public class CustomerSalesGoodsAdapter extends BaseAdapter {
     }
     class ViewHolder{
         NetworkImageView picture;
-        TextView name,price,discount,introduction,sales,praise,count;
+        TextView name,price,discount,introduction,sales,count;
         ImageView add,delete;
     }
 

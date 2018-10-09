@@ -36,6 +36,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -66,6 +68,7 @@ public class CustomerTakeOrderActivity extends BaseActivity implements View.OnCl
     private SalesDetail salesDetail;
     private String order_id,order_time;
     private Address a;
+    private float money;
 
 
     @Override
@@ -231,7 +234,7 @@ public class CustomerTakeOrderActivity extends BaseActivity implements View.OnCl
                             HashMap<String,Integer> hashMap = ShoppingCarHistory.getInstance().get(salesDetail.getPhone());
                             if (hashMap != null) {
                                 app.setHashMap(hashMap);
-                                float money = 0;
+                                money = 0;
                                 for (OrderGoods bean : allGoodsList) {
                                     if (hashMap.containsKey(bean.getName())) {
                                         Integer count = hashMap.get(bean.getName());
@@ -324,9 +327,16 @@ public class CustomerTakeOrderActivity extends BaseActivity implements View.OnCl
             }
             jsonArray.put(jsonObject);
         }
+//        try{
+//            s_name = URLEncoder.encode(s_name,"utf-8");
+//        }catch (UnsupportedEncodingException e){
+//            e.printStackTrace();
+//        }
         Log.e("json",jsonArray.toString());
         RequestBody requestBody = new FormBody.Builder().add("order_id",order_id)
                 .add("order_time",order_time).add("customer_user",app.getCustomer_phone())
+                .add("name",name.getText().toString()).add("receive_phone",phone.getText().toString())
+                .add("address",address.getText().toString()).add("total_price",""+money)
                 .add("sales_user",salesDetail.getPhone()).add("jsonArray",jsonArray.toString()).build();
         Request.Builder builder = new Request.Builder();
         Request request = builder.url(app.getUrl()+"/AddOrder").post(requestBody).build();
@@ -354,8 +364,8 @@ public class CustomerTakeOrderActivity extends BaseActivity implements View.OnCl
                             ShoppingCarHistory.getInstance().delete(salesDetail.getPhone());
                             //获取当前顾客下的订单
                             CustomerOrder customerOrder = new CustomerOrder(order_id,app.getCustomer_phone(),"",salesDetail.getPhone(),"",
-                                    "","","",salesDetail.getUsername(),salesDetail.getAddress(),a.getName(),a.getReceive_phone(),
-                                    a.getAddress(),0,0,0,false,false,false,Long.parseLong(order_time),0);
+                                    "","","","",salesDetail.getUsername(),salesDetail.getAddress(),name.getText().toString(),phone.getText().toString(),
+                                    address.getText().toString(),salesDetail.getHead(),0,0,0,false,false,Long.parseLong(order_time),0,money);
                             app.setCustomerOrder(customerOrder);
                             Handler handler = new Handler();
                             handler.postDelayed(new Runnable() {

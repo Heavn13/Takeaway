@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.example.heavn.fanfan.Bean.OrderGoods;
 import com.example.heavn.fanfan.Bean.RiderOrder;
+import com.example.heavn.fanfan.MapActivity;
 import com.example.heavn.fanfan.R;
 import com.example.heavn.fanfan.OrderGoodsAdapter;
 import com.example.heavn.fanfan.Util.BaseActivity;
@@ -53,7 +54,7 @@ public class RiderOrderDetailActivity extends BaseActivity implements View.OnCli
     private RiderOrder riderOrder;
     private TextView sales_name,sales_address,address,customer,rider,id,order_time,arrival_time,total_money,customer_text, sales_text;
     private EditText rider_text;
-    private ImageView sales_phone,customer_phone;
+    private ImageView sales_phone,customer_phone,sales_location,customer_location;
     private LinearLayout button,comment,user_rank,rider_rank,sales_rank;
     private Button submit,accept,reject,finish;
     private String s_sales_phone = null,s_customer_phone = null;
@@ -108,6 +109,10 @@ public class RiderOrderDetailActivity extends BaseActivity implements View.OnCli
         sales_phone.setOnClickListener(this);
         customer_phone = findViewById(R.id.customer_phone);
         customer_phone.setOnClickListener(this);
+        sales_location = findViewById(R.id.sales_location);
+        sales_location.setOnClickListener(this);
+        customer_location = findViewById(R.id.customer_location);
+        customer_location.setOnClickListener(this);
 
         //初始化信息
         new Thread(initRunnable).start();
@@ -133,6 +138,16 @@ public class RiderOrderDetailActivity extends BaseActivity implements View.OnCli
                     intent.setData(Uri.parse("tel:"+s_customer_phone));
                     startActivity(intent);
                 }
+                break;
+            case R.id.sales_location:
+                app.setEndNote(sales_address.getText().toString());
+                Intent intent = new Intent(RiderOrderDetailActivity.this, MapActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.customer_location:
+                app.setEndNote(address.getText().toString());
+                Intent intent1 = new Intent(RiderOrderDetailActivity.this, MapActivity.class);
+                startActivity(intent1);
                 break;
             case R.id.accept:
                 receive(app.getRider_phone());
@@ -165,7 +180,7 @@ public class RiderOrderDetailActivity extends BaseActivity implements View.OnCli
 
         sales_name.setText(riderOrder.getSales_username());
         sales_address.setText(riderOrder.getSales_address());
-        address.setText(riderOrder.getCustomer_address());
+        address.setText(riderOrder.getAddress());
         customer.setText(riderOrder.getName()+"  "+ riderOrder.getCustomer_user());
         if (!riderOrder.getRider_user().equals("")){
             rider.setText("自己");

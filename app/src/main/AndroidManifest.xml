@@ -39,7 +39,7 @@
         <!--调用百度API-->
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
-            android:value="	kMQKD9StSZOQXpXGXGaizFeYIWwu3ngA" />
+            android:value="NMEFakzYZBkRMu3rntE1Y5Gp8rdVQaxL" />
         <!--安卓系统6.0以上必须添加该项以调用相机-->
         <provider
             android:name="android.support.v4.content.FileProvider"
@@ -59,6 +59,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".Util.BaseActivity"/>
+        <activity android:name=".MapActivity"/>
         <activity android:name=".LoginActivity"/>
         <activity android:name=".RegisterActivity"/>
         <activity android:name=".ChangePasswordActivity"/>

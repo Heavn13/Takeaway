@@ -97,6 +97,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:orientation="horizontal"
+                    android:gravity="center_vertical"
                     android:layout_height="50dp">
                     <TextView
                         android:layout_width="0dp"
@@ -114,8 +115,14 @@
                         android:paddingRight="5dp"
                         android:gravity="right|center_vertical"
                         android:textSize="15dp"
-                        android:layout_weight="7"
+                        android:layout_weight="5"
                         android:layout_height="match_parent" />
+                    <ImageView
+                        android:id="@+id/sales_location"
+                        android:background="@drawable/location"
+                        android:layout_marginLeft="5dp"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp" />
 
                 </LinearLayout>
                 <TextView
@@ -236,6 +243,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:orientation="horizontal"
+                    android:gravity="center_vertical"
                     android:layout_height="50dp">
                     <TextView
                         android:layout_width="0dp"
@@ -253,8 +261,14 @@
                         android:paddingRight="5dp"
                         android:gravity="right|center_vertical"
                         android:textSize="15dp"
-                        android:layout_weight="7"
+                        android:layout_weight="5"
                         android:layout_height="match_parent" />
+                    <ImageView
+                        android:id="@+id/customer_location"
+                        android:background="@drawable/location"
+                        android:layout_marginLeft="5dp"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp" />
 
                 </LinearLayout>
                 <TextView

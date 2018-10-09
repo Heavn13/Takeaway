@@ -7,9 +7,8 @@ package com.example.heavn.fanfan.Bean;
 
 public class RiderBean {
     private String username,password,phone,head,health_certificate;
-    private int punctuality,praise,order_count;
+    private int order_count;
     private Boolean verify;
-
 
     public RiderBean() {
     }
@@ -52,22 +51,6 @@ public class RiderBean {
 
     public void setHealth_certificate(String health_certificate) {
         this.health_certificate = health_certificate;
-    }
-
-    public int getPunctuality() {
-        return punctuality;
-    }
-
-    public void setPunctuality(int punctuality) {
-        this.punctuality = punctuality;
-    }
-
-    public int getPraise() {
-        return praise;
-    }
-
-    public void setPraise(int praise) {
-        this.praise = praise;
     }
 
     public int getOrder_count() {

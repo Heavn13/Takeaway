@@ -9,7 +9,6 @@ import android.widget.TextView;
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.NetworkImageView;
 import com.example.heavn.fanfan.Bean.CustomerOrder;
-import com.example.heavn.fanfan.Bean.SalesDetail;
 import com.example.heavn.fanfan.R;
 import com.example.heavn.fanfan.Util.BitmapCache;
 import com.example.heavn.fanfan.Util.DateUtil;
@@ -60,6 +59,7 @@ public class CustomerOrderAdapter extends BaseAdapter {
             holder.sales_name = view.findViewById(R.id.sales_name);
             holder.order_time = view.findViewById(R.id.order_time);
             holder.state = view.findViewById(R.id.state);
+            holder.total_money = view.findViewById(R.id.total_money);
             view.setTag(holder);
         } else {
             holder = (ViewHolder) view.getTag();
@@ -72,6 +72,7 @@ public class CustomerOrderAdapter extends BaseAdapter {
         holder.head.setDefaultImageResId(R.drawable.nopicture);
         holder.head.setImageUrl(list.get(i).getSales_head(), imageLoader);
         holder.sales_name.setText(list.get(i).getSales_username());
+        holder.total_money.setText("￥"+list.get(i).getTotal_price());
         holder.order_time.setText(DateUtil.getTime(list.get(i).getOrder_time()));
         if( list.get(i).isReceive() && !list.get(i).isFinish()){
             holder.state.setText("正在配送中");
@@ -83,6 +84,6 @@ public class CustomerOrderAdapter extends BaseAdapter {
     }
     class ViewHolder{
         NetworkImageView head;
-        TextView sales_name,order_time,state;
+        TextView sales_name,order_time,total_money,state;
     }
 }

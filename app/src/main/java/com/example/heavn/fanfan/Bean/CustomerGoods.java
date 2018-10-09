@@ -1,22 +1,13 @@
 package com.example.heavn.fanfan.Bean;
 
 /**
- * 顾客加入购物车中的商品类
  * Created by Administrator on 2018/9/18 0018.
  */
 
 public class CustomerGoods {
     private String phone,name,type,introduction,picture;
     private float price;
-    private int sales,praise,discount,count;
-
-    public int getCount() {
-        return count;
-    }
-
-    public void setCount(int count) {
-        this.count = count;
-    }
+    private int sales,discount,count = 0;
 
     public String getPhone() {
         return phone;
@@ -82,13 +73,11 @@ public class CustomerGoods {
         this.sales = sales;
     }
 
-    public int getPraise() {
-        return praise;
+    public int getCount() {
+        return count;
     }
 
-    public void setPraise(int praise) {
-        this.praise = praise;
+    public void setCount(int count) {
+        this.count = count;
     }
-
-
 }

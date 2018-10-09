@@ -34,13 +34,23 @@ public class MyApp extends Application{
     private SalesDetail salesDetail;//商家详情
     private HashMap<String, Integer> hashMap;//用于存储购物车中缓存的商品
     private List<CustomerGoods> allGoodsList;//用于存顾客添加到购物车中的商品列表
+    private String endNote;
 
+
+    public String getEndNote() {
+        return endNote;
+    }
+
+    public void setEndNote(String endNote) {
+        this.endNote = endNote;
+    }
 
     @Override
     public final void onCreate() {
          super.onCreate();
         queue = Volley.newRequestQueue(getApplicationContext());
     }
+
 
     public List<CustomerGoods> getAllGoodsList() {
         return allGoodsList;
