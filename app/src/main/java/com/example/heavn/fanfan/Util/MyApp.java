@@ -7,6 +7,8 @@ import com.android.volley.toolbox.Volley;
 import com.example.heavn.fanfan.Bean.Address;
 import com.example.heavn.fanfan.Bean.CustomerGoods;
 import com.example.heavn.fanfan.Bean.CustomerOrder;
+import com.example.heavn.fanfan.Bean.Message;
+import com.example.heavn.fanfan.Bean.RiderBean;
 import com.example.heavn.fanfan.Bean.RiderOrder;
 import com.example.heavn.fanfan.Bean.SalesDetail;
 import com.example.heavn.fanfan.Bean.SalesOrder;
@@ -23,19 +25,35 @@ public class MyApp extends Application{
     public static RequestQueue queue;//volley框架使用的请求队列
     private String user_type;//用户类型，四个类型
     private String customer_phone,rider_phone,sales_phone,backstage_phone;//四个客户端的手机账号
+    private RiderBean rider_user;//骑手用户
     private String goods_type = "热销",goods_name;//商品的类型和名称
-    //121.250.222.235
+    //192.168.28.1:8080
     //http://47.93.25.241:8080/Order
     private String url = "http://47.93.25.241:8080/Order";//后台方法的请求地址
     private SalesOrder salesOrder;//商家订单
     private RiderOrder riderOrder;//骑手订单
     private CustomerOrder customerOrder;//用户订单
     private Address address;//顾客地址
+    private Message message;//系统消息
     private SalesDetail salesDetail;//商家详情
     private HashMap<String, Integer> hashMap;//用于存储购物车中缓存的商品
     private List<CustomerGoods> allGoodsList;//用于存顾客添加到购物车中的商品列表
-    private String endNote;
+    private String endNote;//百度地图路线规划的终点
 
+
+    @Override
+    public final void onCreate() {
+         super.onCreate();
+        queue = Volley.newRequestQueue(getApplicationContext());
+    }
+
+    public Message getMessage() {
+        return message;
+    }
+
+    public void setMessage(Message message) {
+        this.message = message;
+    }
 
     public String getEndNote() {
         return endNote;
@@ -45,12 +63,13 @@ public class MyApp extends Application{
         this.endNote = endNote;
     }
 
-    @Override
-    public final void onCreate() {
-         super.onCreate();
-        queue = Volley.newRequestQueue(getApplicationContext());
+    public RiderBean getRider_user() {
+        return rider_user;
     }
 
+    public void setRider_user(RiderBean rider_user) {
+        this.rider_user = rider_user;
+    }
 
     public List<CustomerGoods> getAllGoodsList() {
         return allGoodsList;

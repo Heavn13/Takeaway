@@ -10,16 +10,8 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.example.heavn.fanfan.Backstage.BackstageRiderVerifyActivity;
-import com.example.heavn.fanfan.Backstage.RiderAdapter;
 import com.example.heavn.fanfan.Bean.Address;
-import com.example.heavn.fanfan.Bean.CustomerOrder;
-import com.example.heavn.fanfan.Bean.RiderBean;
-import com.example.heavn.fanfan.Bean.SalesDetail;
-import com.example.heavn.fanfan.ChangePasswordActivity;
-import com.example.heavn.fanfan.MainActivity;
 import com.example.heavn.fanfan.R;
-import com.example.heavn.fanfan.Util.ActivityCollector;
 import com.example.heavn.fanfan.Util.BaseActivity;
 import com.example.heavn.fanfan.Util.MyApp;
 import com.google.gson.Gson;
@@ -44,7 +36,7 @@ import okhttp3.Response;
  * Created by Administrator on 2018/9/17 0017.
  */
 
-public class CustomerAddressActivity extends BaseActivity implements View.OnClickListener,AdapterView.OnItemClickListener,AdapterView.OnItemLongClickListener{
+public class CustomerAddressChooseActivity extends BaseActivity implements View.OnClickListener,AdapterView.OnItemClickListener{
     private ImageView back,add;
     private ListView listView;
     private CustomerAddressAdapter adapter;
@@ -60,7 +52,6 @@ public class CustomerAddressActivity extends BaseActivity implements View.OnClic
 
         listView = findViewById(R.id.address_list);
         listView.setOnItemClickListener(this);
-        listView.setOnItemLongClickListener(this);
 
         back = findViewById(R.id.back);
         back.setOnClickListener(this);
@@ -107,18 +98,8 @@ public class CustomerAddressActivity extends BaseActivity implements View.OnClic
         Address address = addressList.get(position);
         app.setAddress(address);
         finish();
-
     }
 
-    //listView的单个长点击事件，点击进入管理地址
-    @Override
-    public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-        Address address = addressList.get(position);
-        app.setAddress(address);
-        Intent intent = new Intent(CustomerAddressActivity.this,CustomerAddressManageActivity.class);
-        startActivity(intent);
-        return false;
-    }
 
     //初始化信息
     private void initView(){
@@ -136,7 +117,7 @@ public class CustomerAddressActivity extends BaseActivity implements View.OnClic
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                Toast.makeText(CustomerAddressActivity.this, "网络错误", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(CustomerAddressChooseActivity.this, "网络错误", Toast.LENGTH_SHORT).show();
                             }
                         });
                     }
@@ -147,7 +128,7 @@ public class CustomerAddressActivity extends BaseActivity implements View.OnClic
                             runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
-                                    Toast.makeText(CustomerAddressActivity.this, "地址查询失败", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(CustomerAddressChooseActivity.this, "地址查询失败", Toast.LENGTH_SHORT).show();
                                 }
                             });
                         }else{
@@ -164,7 +145,7 @@ public class CustomerAddressActivity extends BaseActivity implements View.OnClic
                                         Address address = gson.fromJson(element,Address.class);
                                         addressList.add(address);
                                     }
-                                    adapter = new CustomerAddressAdapter(CustomerAddressActivity.this, addressList);
+                                    adapter = new CustomerAddressAdapter(CustomerAddressChooseActivity.this, addressList);
                                     listView.setAdapter(adapter);
                                     adapter.notifyDataSetChanged();
                                 }

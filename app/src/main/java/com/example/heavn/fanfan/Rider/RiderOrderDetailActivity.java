@@ -14,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.heavn.fanfan.Bean.OrderGoods;
+import com.example.heavn.fanfan.Bean.RiderBean;
 import com.example.heavn.fanfan.Bean.RiderOrder;
 import com.example.heavn.fanfan.MapActivity;
 import com.example.heavn.fanfan.R;
@@ -52,6 +53,7 @@ public class RiderOrderDetailActivity extends BaseActivity implements View.OnCli
     private OrderGoodsAdapter adapter;
     private OkHttpClient okHttpClient = new OkHttpClient();
     private RiderOrder riderOrder;
+    private RiderBean rider_user;
     private TextView sales_name,sales_address,address,customer,rider,id,order_time,arrival_time,total_money,customer_text, sales_text;
     private EditText rider_text;
     private ImageView sales_phone,customer_phone,sales_location,customer_location;
@@ -73,6 +75,7 @@ public class RiderOrderDetailActivity extends BaseActivity implements View.OnCli
         setContentView(R.layout.activity_rider_order_detail);
 
         app = (MyApp)getApplication();
+        rider_user = app.getRider_user();
 
         sales_name = findViewById(R.id.sales_name);
         sales_address = findViewById(R.id.sales_address);
@@ -150,10 +153,18 @@ public class RiderOrderDetailActivity extends BaseActivity implements View.OnCli
                 startActivity(intent1);
                 break;
             case R.id.accept:
-                receive(app.getRider_phone());
+                if(rider_user.getVerify()){
+                    receive(app.getRider_phone());
+                }else{
+                    Toast.makeText(this, "您的账号未通过审核，无权限进行此操作", Toast.LENGTH_SHORT).show();
+                }
                 break;
             case R.id.reject:
-                receive("");
+                if(rider_user.getVerify()){
+                    receive("");
+                }else{
+                    Toast.makeText(this, "您的账号未通过审核，无权限进行此操作", Toast.LENGTH_SHORT).show();
+                }
                 break;
             case R.id.finish:
                 finishOrder(true);

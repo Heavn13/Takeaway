@@ -74,7 +74,7 @@
         android:inputType="number"
         app:figures="6"
         android:layout_marginTop="20dp"
-        app:selectedBackgroundColor="@color/transparant"
+        app:selectedBackgroundColor="@color/transparent"
         app:bottomLineNormalColor="@color/blue"
         app:bottomLineHeight="2dp"
         app:bottomLineSelectedColor="@color/white"

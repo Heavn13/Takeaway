@@ -9,161 +9,217 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="60dp"
+        android:orientation="horizontal"
         android:gravity="center"
+        android:weightSum="10"
         android:background="@color/blue">
         <TextView
             android:text="商家中心"
+            android:gravity="center"
             android:textColor="@color/white"
             android:textSize="20sp"
+            android:paddingLeft="65dp"
+            android:layout_weight="9"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/background"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:orientation="vertical"
-        android:gravity="center">
-        <com.example.heavn.fanfan.Util.CircleImageView
-            android:id="@+id/head"
-            android:layout_marginTop="25dp"
-            android:layout_width="75dp"
-            android:layout_height="75dp"
-            android:background="@drawable/nopicture_circle"
-            app:border_color="@color/gray"
-            app:border_width="1dp" />
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center">
-            <TextView
-                android:id="@+id/username"
-                android:text="username"
-                android:layout_margin="5dp"
-                android:textSize="20sp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-            <ImageView
-                android:background="@drawable/verify"
-                android:layout_width="20dp"
-                android:layout_height="20dp" />
-
-            <TextView
-                android:id="@+id/verify"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="未认证"
-                android:textColor="@color/red" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:weightSum="10"
-            android:gravity="center"
-            android:layout_marginTop="5dp"
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <ImageView
-                android:src="@drawable/red_star"
-                android:layout_width="18dp"
-                android:layout_height="18dp" />
-            <TextView
-                android:id="@+id/rank"
-                android:text="0.0"
-                android:gravity="center"
-                android:textColor="@color/red"
-                android:layout_weight="1"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content" />
-
-            <TextView
-                android:text="月售"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-            <TextView
-                android:id="@+id/sales"
-                android:text="0"
-                android:gravity="center"
-                android:layout_weight="1"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content" />
-        </LinearLayout>
-    </LinearLayout>
-
-
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="50dp"
-        android:gravity="center"
-        android:weightSum="2">
         <RelativeLayout
             android:layout_weight="1"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:paddingRight="5dp"
+            android:paddingTop="10dp">
             <ImageView
-                android:id="@+id/order"
-                android:background="@drawable/order"
-                android:layout_width="50dp"
+                android:id="@+id/message"
+                android:background="@drawable/message"
+                android:layout_width="40dp"
                 android:layout_centerHorizontal="true"
-                android:layout_height="50dp" />
+                android:layout_height="40dp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
-                android:layout_below="@+id/order"
-                android:text="我的订单"
+                android:layout_below="@+id/message"
+                android:text="我的消息"
                 android:textColor="@color/blue"
                 android:textSize="10sp"
-                android:id="@+id/textView" />
+                android:id="@+id/textView1" />
 
             <TextView
-                android:id="@+id/count"
+                android:id="@+id/message_count"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
-                android:layout_alignParentTop="true"
-                android:layout_toEndOf="@+id/textView"
+                android:layout_above="@+id/textView1"
+                android:layout_centerHorizontal="true"
                 android:background="@drawable/circle"
-                android:text="0"
                 android:gravity="center"
+                android:text="0"
                 android:textColor="@color/white" />
-    </RelativeLayout>
-
-    <LinearLayout
-        android:layout_weight="1"
-        android:orientation="vertical"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center">
-    <ImageView
-        android:id="@+id/bill"
-        android:background="@drawable/bill"
-        android:layout_width="50dp"
-        android:layout_height="50dp" />
-    <TextView
-        android:text="我的账单"
-        android:textSize="10sp"
-        android:textColor="@color/blue"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-    </LinearLayout>
+        </RelativeLayout>
 
     </LinearLayout>
 
-    <Button
-        android:id="@+id/logout"
-        android:text="注销账号"
-        android:textColor="@color/white"
-        android:textSize="18sp"
-        android:background="@drawable/button_blue"
-        android:layout_marginTop="60dp"
-        android:layout_width="300dp"
-        android:layout_height="50dp" />
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/refresh"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:id="@+id/background"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:orientation="vertical"
+                android:gravity="center">
+                <com.example.heavn.fanfan.Util.CircleImageView
+                    android:id="@+id/head"
+                    android:layout_marginTop="25dp"
+                    android:layout_width="75dp"
+                    android:layout_height="75dp"
+                    android:background="@drawable/nopicture_circle"
+                    app:border_color="@color/gray"
+                    app:border_width="1dp" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center">
+                    <TextView
+                        android:id="@+id/username"
+                        android:text="username"
+                        android:layout_margin="5dp"
+                        android:textSize="20sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <ImageView
+                        android:background="@drawable/verify"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp" />
+
+                    <TextView
+                        android:id="@+id/verify"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="未认证"
+                        android:textColor="@color/red" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:weightSum="10"
+                    android:gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:src="@drawable/red_star"
+                        android:layout_width="18dp"
+                        android:layout_height="18dp" />
+                    <TextView
+                        android:id="@+id/rank"
+                        android:text="0.0"
+                        android:gravity="center"
+                        android:textColor="@color/red"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:text="月售"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:id="@+id/sales"
+                        android:text="0"
+                        android:gravity="center"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="50dp"
+                android:gravity="center"
+                android:weightSum="2">
+                <RelativeLayout
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:id="@+id/order"
+                        android:background="@drawable/order"
+                        android:layout_width="50dp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_height="50dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_below="@+id/order"
+                        android:text="我的订单"
+                        android:textColor="@color/blue"
+                        android:textSize="10sp"
+                        android:id="@+id/textView" />
+
+                    <TextView
+                        android:id="@+id/count"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_alignParentTop="true"
+                        android:layout_toEndOf="@+id/textView"
+                        android:background="@drawable/circle"
+                        android:text="0"
+                        android:gravity="center"
+                        android:textColor="@color/white" />
+                </RelativeLayout>
+
+
+                <LinearLayout
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center">
+                    <ImageView
+                        android:id="@+id/bill"
+                        android:background="@drawable/bill"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp" />
+                    <TextView
+                        android:text="我的账单"
+                        android:textSize="10sp"
+                        android:textColor="@color/blue"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/logout"
+                android:text="注销账号"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:background="@drawable/button_blue"
+                android:layout_marginTop="60dp"
+                android:layout_width="300dp"
+                android:layout_height="50dp" />
+
+        </LinearLayout>
+
+
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+
 
 </LinearLayout>

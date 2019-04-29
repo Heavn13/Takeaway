@@ -43,6 +43,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:hint="收货人联系方式"
+        android:inputType="number"
         android:maxLength="11"
         android:maxLines="1"
         android:paddingLeft="10dp"/>

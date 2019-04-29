@@ -2,31 +2,31 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.heavn.fanfan">
 
-    <!--允许联网 -->
+    <!-- 允许联网 -->
     <uses-permission android:name="android.permission.INTERNET" />
-    <!--获取GSM（2g）、WCDMA（联通3g）等网络状态的信息 -->
+    <!-- 获取GSM（2g）、WCDMA（联通3g）等网络状态的信息 -->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <!-- 更改wifi连状态 -->
-    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
 
-    <!--获取wifi网络状态的信息 -->
+    <!-- 获取wifi网络状态的信息 -->
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <!-- 获取sd卡写的权限，用于文件上传和下载 -->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <!-- 允许读取手机状态 用于创建BmobInstallation -->
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    <!--唤醒手机-->
-    <uses-permission android:name="android.permission.WAKE_LOCK"/>
-    <!--调用摄像头权限-->
-    <uses-permission android:name="android.permission.CAMERA"/>
-    <!--定位-->
-    <uses-permission android:name="android.permission.ACCESS_GPS"/>
+    <!-- 唤醒手机 -->
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <!-- 调用摄像头权限 -->
+    <uses-permission android:name="android.permission.CAMERA" />
+    <!-- 定位 -->
+    <uses-permission android:name="android.permission.ACCESS_GPS" />
     <!-- 获取精确gps位置 -->
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <!-- 获取粗略位置 -->
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <!-- 允许程序访问额外的定位提供者指令获取模拟定位信息 -->
-    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS"/>
+    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
 
     <application
         android:name=".Util.MyApp"
@@ -36,11 +36,12 @@
         android:roundIcon="@drawable/icon"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <!--调用百度API-->
+
+        <!-- 调用百度API -->
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
             android:value="NMEFakzYZBkRMu3rntE1Y5Gp8rdVQaxL" />
-        <!--安卓系统6.0以上必须添加该项以调用相机-->
+        <!-- 安卓系统6.0以上必须添加该项以调用相机 -->
         <provider
             android:name="android.support.v4.content.FileProvider"
             android:authorities="com.example.heavn.fanfan.provider"
@@ -48,44 +49,48 @@
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/provider_paths"/>
+                android:resource="@xml/provider_paths" />
         </provider>
+
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Util.BaseActivity"/>
-        <activity android:name=".MapActivity"/>
-        <activity android:name=".LoginActivity"/>
-        <activity android:name=".RegisterActivity"/>
-        <activity android:name=".ChangePasswordActivity"/>
-        <activity android:name=".Backstage.BackstageMainActivity"/>
-        <activity android:name=".Backstage.BackstageRiderVerifyActivity"/>
-        <activity android:name=".Backstage.BackStageSalesVerifyActivity"/>
-        <activity android:name=".Customer.CustomerMainActivity"/>
-        <activity android:name=".Customer.CustomerDetailActivity"/>
-        <activity android:name=".Customer.CustomerSettingActivity"/>
-        <activity android:name=".Customer.CustomerChangePayPassword"/>
-        <activity android:name=".Customer.CustomerAddressActivity"/>
-        <activity android:name=".Customer.CustomerAddressAddActivity"/>
-        <activity android:name=".Customer.CustomerSalesDetailActivity"/>
-        <activity android:name=".Customer.CustomerAddressManageActivity"/>
-        <activity android:name=".Customer.CustomerTakeOrderActivity"/>
-        <activity android:name=".Customer.CustomerOrderDetailActivity"/>
-        <activity android:name=".Rider.RiderMainActivity"/>
-        <activity android:name=".Rider.RiderVerifyActivity"/>
-        <activity android:name=".Rider.RiderOrderDetailActivity"/>
-        <activity android:name=".Sales.SalesMainActivity"/>
-        <activity android:name=".Sales.SalesVerifyActivity"/>
-        <activity android:name=".Sales.SalesAddGoodsActivity"/>
-        <activity android:name=".Sales.ManageGoodsActivity"/>
-        <activity android:name=".Sales.SalesOrderActivity"/>
-        <activity android:name=".Sales.SalesOrderDetailActivity"/>
-
+        <activity android:name=".Util.BaseActivity" />
+        <activity android:name=".MapActivity" />
+        <activity android:name=".LoginActivity" />
+        <activity android:name=".RegisterActivity" />
+        <activity android:name=".ChangePasswordActivity" />
+        <activity android:name=".Backstage.BackstageMainActivity" />
+        <activity android:name=".Backstage.BackstageRiderVerifyActivity" />
+        <activity android:name=".Backstage.BackStageSalesVerifyActivity" />
+        <activity android:name=".Customer.CustomerMainActivity" />
+        <activity android:name=".Customer.CustomerDetailActivity" />
+        <activity android:name=".Customer.CustomerSettingActivity" />
+        <activity android:name=".Customer.CustomerChangePayPassword" />
+        <activity android:name=".Customer.CustomerAddressActivity" />
+        <activity android:name=".Customer.CustomerAddressAddActivity" />
+        <activity android:name=".Customer.CustomerSalesDetailActivity" />
+        <activity android:name=".Customer.CustomerAddressManageActivity" />
+        <activity android:name=".Customer.CustomerAddressChooseActivity" />
+        <activity android:name=".Customer.CustomerTakeOrderActivity" />
+        <activity android:name=".Customer.CustomerOrderDetailActivity" />
+        <activity android:name=".Rider.RiderMainActivity" />
+        <activity android:name=".Rider.RiderVerifyActivity" />
+        <activity android:name=".Rider.RiderOrderDetailActivity" />
+        <activity android:name=".Sales.SalesMainActivity" />
+        <activity android:name=".Sales.SalesVerifyActivity" />
+        <activity android:name=".Sales.SalesAddGoodsActivity" />
+        <activity android:name=".Sales.ManageGoodsActivity" />
+        <activity android:name=".Sales.SalesOrderActivity" />
+        <activity android:name=".Sales.SalesOrderDetailActivity" />
+        <activity android:name=".MessageActivity" />
+        <activity android:name=".MessageContentActivity" />
     </application>
 
 </manifest>

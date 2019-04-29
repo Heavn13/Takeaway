@@ -98,6 +98,77 @@ public class CustomerTakeOrderActivity extends BaseActivity implements View.OnCl
 
     }
 
+    //修改地址后更新订单的地址信息
+    @Override
+    protected void onResume() {
+        super.onResume();
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                //设置商店名称
+                sales_name.setText(salesDetail.getUsername());
+                //获取该商家的所有商品信息
+                getAllGoods();
+                //选取收货地址后更新收货地址
+                final Address add = app.getAddress();
+                if(add != null){
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            address.setText(add.getAddress());
+                            name.setText(add.getName());
+                            phone.setText(add.getReceive_phone());
+                        }
+                    });
+                }else{
+                    //获取默认地址
+                    RequestBody requestBody = new FormBody.Builder().add("phone",app.getCustomer_phone()).build();
+                    Request.Builder builder = new Request.Builder();
+                    Request request = builder.url(app.getUrl()+"/GetDefaultAddress").post(requestBody).build();
+                    Call call = okHttpClient.newCall(request);
+                    //执行Call
+                    call.enqueue(new Callback() {
+                        @Override
+                        public void onFailure(Call call, IOException e) {
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Toast.makeText(CustomerTakeOrderActivity.this, "网络错误", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                        }
+                        @Override
+                        public void onResponse(Call call, Response response) throws IOException {
+                            final String res = response.body().string();
+                            if(res.equals("false")){
+                                runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        address.setText("暂未设置地址，请点击设置");
+                                        name.setText("");
+                                        phone.setText("");
+                                    }
+                                });
+                            }else{
+//                    Log.e("json",res);
+                                runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        a = new Gson().fromJson(res,Address.class);
+                                        address.setText(a.getAddress());
+                                        name.setText(a.getName());
+                                        phone.setText(a.getPhone());
+                                    }
+                                });
+                            }
+                        }
+                    });
+                }
+
+            }
+        }).start();
+    }
+
     @Override
     public void onClick(View v) {
         switch (v.getId()){
@@ -105,32 +176,37 @@ public class CustomerTakeOrderActivity extends BaseActivity implements View.OnCl
                 finish();
                 break;
             case R.id.address:
-                Intent intent = new Intent(CustomerTakeOrderActivity.this,CustomerAddressActivity.class);
+                Intent intent = new Intent(CustomerTakeOrderActivity.this,CustomerAddressChooseActivity.class);
                 startActivity(intent);
                 break;
             case R.id.pay:
-                View view = getLayoutInflater().inflate(R.layout.dialog_code, null);
-                final VerificationCodeEditText editText = view.findViewById(R.id.code);
-                AlertDialog dialog = new AlertDialog.Builder(this)
-                        .setTitle("请输入您的支付密码")//设置对话框的标题
-                        .setView(view)
-                        .setNegativeButton("取消", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                dialog.dismiss();
-                            }
-                        })
-                        .setPositiveButton("确定", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                hideSoftKeyboard(CustomerTakeOrderActivity.this);
-                                String content = editText.getText().toString();
-                                verifyPayPassword(content);
-                                dialog.dismiss();
-                                hideSoftKeyboard(CustomerTakeOrderActivity.this);
-                            }
-                        }).create();
-                dialog.show();
+                if(address.getText().equals("暂未设置地址，请点击设置")){
+                    Toast.makeText(this, "请先设置收货地址", Toast.LENGTH_SHORT).show();
+                }else{
+                    View view = getLayoutInflater().inflate(R.layout.dialog_code, null);
+                    final VerificationCodeEditText editText = view.findViewById(R.id.code);
+                    AlertDialog dialog = new AlertDialog.Builder(this)
+                            .setTitle("请输入您的支付密码")//设置对话框的标题
+                            .setView(view)
+                            .setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.dismiss();
+                                }
+                            })
+                            .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    hideSoftKeyboard(CustomerTakeOrderActivity.this);
+                                    String content = editText.getText().toString();
+                                    verifyPayPassword(content);
+                                    dialog.dismiss();
+                                    hideSoftKeyboard(CustomerTakeOrderActivity.this);
+                                }
+                            }).create();
+                    dialog.show();
+                }
+
                 break;
             default:
                 break;
@@ -147,7 +223,6 @@ public class CustomerTakeOrderActivity extends BaseActivity implements View.OnCl
                 sales_name.setText(salesDetail.getUsername());
                 //获取该商家的所有商品信息
                 getAllGoods();
-                Log.e("ad","dada");
 
                 //获取默认地址
                 RequestBody requestBody = new FormBody.Builder().add("phone",app.getCustomer_phone()).build();
@@ -172,7 +247,7 @@ public class CustomerTakeOrderActivity extends BaseActivity implements View.OnCl
                             runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
-                                    address.setText("暂未设置地址，请点击设置地址");
+                                    address.setText("暂未设置地址，请点击设置");
                                     name.setText("");
                                     phone.setText("");
                                 }

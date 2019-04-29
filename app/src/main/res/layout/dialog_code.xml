@@ -11,7 +11,7 @@
         android:id="@+id/code"
         android:inputType="number"
         app:figures="6"
-        app:selectedBackgroundColor="@color/transparant"
+        app:selectedBackgroundColor="@color/transparent"
         app:bottomLineNormalColor="@color/blue"
         app:bottomLineHeight="2dp"
         app:bottomLineSelectedColor="@color/white"

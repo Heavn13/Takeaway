@@ -108,13 +108,16 @@ public class MapActivity extends BaseActivity {
                 if (firstLocation)
                 {
                     firstLocation = false;
+                    //手机定位到的当前位置
                     LatLng xy = new LatLng(location.getLatitude(),
                             location.getLongitude());
                     mySearch = RoutePlanSearch.newInstance();
                     mySearch.setOnGetRoutePlanResultListener(listener);
                     PlanNode stNode = PlanNode.withLocation(xy);
+                    //目标位置
                     String end = app.getEndNote();
                     PlanNode enNode = PlanNode.withCityNameAndPlaceName("济南", end);
+                    //驾车路线规划
                     mySearch.drivingSearch((new DrivingRoutePlanOption())
                             .from(stNode)
                             .to(enNode));
@@ -239,6 +242,4 @@ public class MapActivity extends BaseActivity {
             }
         }
     };
-
-
 }

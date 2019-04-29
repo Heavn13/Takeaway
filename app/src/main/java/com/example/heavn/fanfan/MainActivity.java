@@ -83,7 +83,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
                 break;
             case R.id.backstage:
                 intent = new Intent(MainActivity.this,LoginActivity.class);
-//                app.setUser_type("administrator");
+                app.setUser_type("administrator");
                 startActivity(intent);
                 break;
             default:

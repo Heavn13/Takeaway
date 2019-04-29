@@ -13,7 +13,9 @@ import android.widget.Toast;
 import com.example.heavn.fanfan.Backstage.BackstageRiderVerifyActivity;
 import com.example.heavn.fanfan.Backstage.RiderAdapter;
 import com.example.heavn.fanfan.Bean.Address;
+import com.example.heavn.fanfan.Bean.CustomerOrder;
 import com.example.heavn.fanfan.Bean.RiderBean;
+import com.example.heavn.fanfan.Bean.SalesDetail;
 import com.example.heavn.fanfan.ChangePasswordActivity;
 import com.example.heavn.fanfan.MainActivity;
 import com.example.heavn.fanfan.R;
@@ -64,7 +66,6 @@ public class CustomerAddressActivity extends BaseActivity implements View.OnClic
         add = findViewById(R.id.add);
         add.setOnClickListener(this);
 
-
         app = (MyApp)getApplication();
 
         //刷新操作
@@ -98,14 +99,13 @@ public class CustomerAddressActivity extends BaseActivity implements View.OnClic
         }
     }
 
-    //listView的单个点击事件，点击进入管理地址
+    //listView的单个点击事件，点击设置地址
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         Address address = addressList.get(position);
         app.setAddress(address);
         Intent intent = new Intent(CustomerAddressActivity.this,CustomerAddressManageActivity.class);
         startActivity(intent);
-
     }
 
     //初始化信息

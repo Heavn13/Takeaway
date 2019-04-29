@@ -117,17 +117,7 @@ public class DrivingRouteOverlay extends OverlayManager {
                     }
                 }
             }
-            
-//            Bundle indexList = new Bundle();
-//            if (traffics.size() > 0) {
-//                int raffic[] = new int[traffics.size()];
-//                int index = 0;
-//                for (Integer tempTraff : traffics) {
-//                    raffic[index] = tempTraff.intValue();
-//                    index++;
-//                }
-//                indexList.putIntArray("indexs", raffic);
-//            }
+
             boolean isDotLine = false;
             
             if (traffics != null && traffics.size() > 0) {

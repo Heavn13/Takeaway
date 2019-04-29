@@ -3,11 +3,27 @@ package com.example.heavn.fanfan.Rider;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
+import android.util.Log;
+import android.widget.Toast;
 
 import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.ashokvarma.bottomnavigation.BottomNavigationItem;
+import com.example.heavn.fanfan.Bean.RiderBean;
 import com.example.heavn.fanfan.Util.BaseActivity;
 import com.example.heavn.fanfan.R;
+import com.example.heavn.fanfan.Util.ImageDownloadTask;
+import com.example.heavn.fanfan.Util.MyApp;
+import com.google.gson.Gson;
+
+import java.io.IOException;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.FormBody;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
 
 /**
  * 骑手主界面
@@ -21,11 +37,15 @@ public class RiderMainActivity extends BaseActivity implements BottomNavigationB
     private FragmentTransaction fragmentTransaction;
     private BottomNavigationBar bottomNavigationBar;
     private int lastSelectedPosition = 0;
+    private OkHttpClient okHttpClient = new OkHttpClient();
+    private MyApp app;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rider_main);
+
+        app = (MyApp)getApplication();
         /**
          * bottomNavigation 设置
          */
@@ -59,6 +79,9 @@ public class RiderMainActivity extends BaseActivity implements BottomNavigationB
                 .initialise(); //initialise 一定要放在 所有设置的最后一项
 
         setDefaultFragment();//设置默认导航栏
+
+        //初始化骑手用户信息
+        initView();
 
     }
 
@@ -108,6 +131,55 @@ public class RiderMainActivity extends BaseActivity implements BottomNavigationB
 
     @Override
     public void onTabReselected(int position) {
+
+    }
+
+    //初始化个人信息
+    private void initView(){
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                //http请求
+                Log.e("phone",app.getRider_phone());
+                RequestBody requestBody = new FormBody.Builder().add("phone",app.getRider_phone()).build();
+                Request.Builder builder = new Request.Builder();
+                Request request = builder.url(app.getUrl()+"/GetRider").post(requestBody).build();
+                Call call = okHttpClient.newCall(request);
+                //执行Call
+                call.enqueue(new Callback() {
+                    @Override
+                    public void onFailure(Call call, IOException e) {
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                Toast.makeText(RiderMainActivity.this, "网络错误", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                    }
+                    @Override
+                    public void onResponse(Call call, Response response) throws IOException {
+                        final String res = response.body().string();
+                        if(res.equals("false")){
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Toast.makeText(RiderMainActivity.this, "该账户查询失败", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                        }else{
+                            Log.e("json",res);
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    RiderBean rider = new Gson().fromJson(res,RiderBean.class);
+                                    app.setRider_user(rider);
+                                }
+                            });
+                        }
+                    }
+                });
+            }
+        }).start();
 
     }
 }

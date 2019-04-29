@@ -163,7 +163,7 @@ public class CustomerSalesListFragment extends Fragment implements View.OnClickL
                                             if(position != 0){
                                                 View view1 = typeListView.getChildAt(0);
                                                 TextView textView = view1.findViewById(R.id.type);
-                                                textView.setBackgroundColor(getResources().getColor(R.color.transparant));
+                                                textView.setBackgroundColor(getResources().getColor(R.color.transparent));
                                             }
 
                                             getTotalPrice();

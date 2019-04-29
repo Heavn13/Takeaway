@@ -168,8 +168,12 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
                 }
                 break;
             case R.id.register:
-                intent = new Intent(LoginActivity.this,RegisterActivity.class);
-                startActivity(intent);
+                if(type.equals("administrator")){
+                    Toast.makeText(app, "审核端账号无法进行注册", Toast.LENGTH_SHORT).show();
+                }else {
+                    intent = new Intent(LoginActivity.this, RegisterActivity.class);
+                    startActivity(intent);
+                }
                 break;
             default:
                 break;

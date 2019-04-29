@@ -62,6 +62,7 @@ public class CustomerAddressAddActivity extends BaseActivity implements View.OnC
         phone = findViewById(R.id.receive_phone);
         address = findViewById(R.id.address);
         radioGroup = findViewById(R.id.radioGroup);
+        radioGroup.setOnCheckedChangeListener(this);
         no = findViewById(R.id.no);
         no.setChecked(true);
 

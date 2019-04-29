@@ -2,29 +2,25 @@ package com.example.heavn.fanfan.Sales;
 
 import android.app.Fragment;
 import android.content.Intent;
-import android.media.Image;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.heavn.fanfan.Backstage.BackstageMainActivity;
-import com.example.heavn.fanfan.Bean.SalesBean;
+import com.example.heavn.fanfan.Bean.Message;
 import com.example.heavn.fanfan.Bean.SalesDetail;
 import com.example.heavn.fanfan.Bean.SalesOrder;
-import com.example.heavn.fanfan.Customer.CustomerMainActivity;
-import com.example.heavn.fanfan.LoginActivity;
 import com.example.heavn.fanfan.MainActivity;
+import com.example.heavn.fanfan.MessageActivity;
 import com.example.heavn.fanfan.R;
-import com.example.heavn.fanfan.Rider.RiderMainActivity;
 import com.example.heavn.fanfan.Util.ActivityCollector;
 import com.example.heavn.fanfan.Util.CircleImageView;
 import com.example.heavn.fanfan.Util.ImageDownloadTask;
@@ -38,7 +34,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import cn.bmob.v3.BmobUser;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.FormBody;
@@ -54,14 +49,16 @@ import okhttp3.Response;
 
 public class SalesDetailFragment extends Fragment implements View.OnClickListener {
     private CircleImageView head;
-    private TextView username, verify;
+    private TextView username, verify,message_count;
     private Button logout;
-    private ImageView order, bill;
+    private List<Message> messageList = new ArrayList<>();
+    private ImageView order, bill,message;
     private TextView count,rank,sales;
     private LinearLayout detail;
     private List<SalesOrder> orderList = new ArrayList<>();
     private MyApp app;
     private OkHttpClient okHttpClient = new OkHttpClient();
+    private SwipeRefreshLayout refreshLayout;
 
     @Nullable
     @Override
@@ -80,6 +77,10 @@ public class SalesDetailFragment extends Fragment implements View.OnClickListene
         sales = view.findViewById(R.id.sales);
         rank = view.findViewById(R.id.rank);
 
+        message = view.findViewById(R.id.message);
+        message.setOnClickListener(this);
+        message_count = view.findViewById(R.id.message_count);
+
         order = view.findViewById(R.id.order);
         order.setOnClickListener(this);
 
@@ -89,7 +90,17 @@ public class SalesDetailFragment extends Fragment implements View.OnClickListene
         logout = view.findViewById(R.id.logout);
         logout.setOnClickListener(this);
 
-        init();
+        refreshLayout = view.findViewById(R.id.refresh);
+        refreshLayout.setColorSchemeColors(getResources().getColor(R.color.blue));
+        refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                initView();
+                refreshLayout.setRefreshing(false);
+            }
+        });
+
+        initView();
 
         return view;
     }
@@ -97,7 +108,7 @@ public class SalesDetailFragment extends Fragment implements View.OnClickListene
     @Override
     public void onResume() {
         super.onResume();
-        init();
+        initView();
     }
 
     @Override
@@ -121,13 +132,16 @@ public class SalesDetailFragment extends Fragment implements View.OnClickListene
             case R.id.bill:
 
                 break;
+            case R.id.message:
+                intent = new Intent(getActivity(), MessageActivity.class);
+                startActivity(intent);
             default:
                 break;
         }
     }
 
     //初始化个人信息
-    private void init() {
+    private void initView() {
         //http请求
 //        Log.e("phone",app.getSales_phone());
         RequestBody requestBody = new FormBody.Builder().add("phone", app.getSales_phone()).build();
@@ -179,6 +193,7 @@ public class SalesDetailFragment extends Fragment implements View.OnClickListene
 
 
         initCount();
+        getMessageCount();
     }
 
     //初始化未接单数
@@ -236,4 +251,65 @@ public class SalesDetailFragment extends Fragment implements View.OnClickListene
             }
         });
     }
+
+    //获取该用户所有未读系统消息的数量
+    private void getMessageCount(){
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                RequestBody requestBody = new FormBody.Builder().add("user",app.getSales_phone()).add("type","sales").build();
+                Request.Builder builder = new Request.Builder();
+                Request request = builder.url(app.getUrl()+"/GetMessageCount").post(requestBody).build();
+                Call call = okHttpClient.newCall(request);
+                //执行Call
+                call.enqueue(new Callback() {
+                    @Override
+                    public void onFailure(Call call, IOException e) {
+                        getActivity().runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                Toast.makeText(getActivity(), "网络错误", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                    }
+                    @Override
+                    public void onResponse(Call call, Response response) throws IOException {
+                        final String res = response.body().string();
+                        if(res.equals("false")){
+                            getActivity().runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Toast.makeText(getActivity(), "查询失败", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                        }else{
+                            Log.e("json",res);
+                            getActivity().runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    messageList.clear();
+                                    JsonParser parser = new JsonParser();
+                                    JsonArray jsonArray = parser.parse(res).getAsJsonArray();
+                                    Log.e("jsonArray",jsonArray.toString());
+                                    Gson gson = new Gson();
+                                    for (JsonElement i:jsonArray) {
+                                        Message message = gson.fromJson(i,Message.class);
+                                        messageList.add(message);
+                                    }
+
+                                    if(messageList.size() == 0){
+                                        message_count.setVisibility(View.INVISIBLE);
+                                    }else{
+                                        message_count.setText(""+messageList.size());
+                                    }
+
+                                }
+                            });
+                        }
+                    }
+                });
+            }
+        }).start();
+    }
+
 }

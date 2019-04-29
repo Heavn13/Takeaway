@@ -15,7 +15,7 @@ import com.example.heavn.fanfan.R;
  * Created by Administrator on 2018/9/16 0016.
  */
 
-public class CustomerMainActivity extends BaseActivity  implements BottomNavigationBar.OnTabSelectedListener {
+public class CustomerMainActivity extends BaseActivity implements BottomNavigationBar.OnTabSelectedListener {
     private CustomerHomeFragment customerHomeFragment;
     private CustomerOrderFragment customerOrderFragment;
     private CustomerDetailFragment customerDetailFragment;

@@ -4,6 +4,7 @@ import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,9 +15,12 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.heavn.fanfan.Bean.Message;
 import com.example.heavn.fanfan.Bean.RiderBean;
 import com.example.heavn.fanfan.Bean.SalesBean;
 import com.example.heavn.fanfan.MainActivity;
+import com.example.heavn.fanfan.MessageActivity;
+import com.example.heavn.fanfan.MessageAdapter;
 import com.example.heavn.fanfan.R;
 import com.example.heavn.fanfan.Sales.SalesVerifyActivity;
 import com.example.heavn.fanfan.Util.ActivityCollector;
@@ -24,8 +28,13 @@ import com.example.heavn.fanfan.Util.CircleImageView;
 import com.example.heavn.fanfan.Util.ImageDownloadTask;
 import com.example.heavn.fanfan.Util.MyApp;
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParser;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -42,11 +51,14 @@ import okhttp3.Response;
 
 public class RiderDetailFragment extends Fragment implements View.OnClickListener{
     private CircleImageView head;
-    private TextView username,verify,order_count;
+    private TextView username,verify,order_count,message_count;
     private Button logout;
+    private ImageView message;
     private LinearLayout detail;
+    private List<Message> messageList = new ArrayList<>();
     private MyApp app;
     private OkHttpClient okHttpClient = new OkHttpClient();
+    private SwipeRefreshLayout refreshLayout;
 
     @Nullable
     @Override
@@ -60,6 +72,10 @@ public class RiderDetailFragment extends Fragment implements View.OnClickListene
         verify = view.findViewById(R.id.verify);
         order_count = view.findViewById(R.id.order_count);
 
+        message = view.findViewById(R.id.message);
+        message.setOnClickListener(this);
+        message_count = view.findViewById(R.id.message_count);
+
         detail = view.findViewById(R.id.background);
         detail.setOnClickListener(this);
 
@@ -67,6 +83,16 @@ public class RiderDetailFragment extends Fragment implements View.OnClickListene
         logout.setOnClickListener(this);
 
         initView();
+
+        refreshLayout = view.findViewById(R.id.refresh);
+        refreshLayout.setColorSchemeColors(getResources().getColor(R.color.blue));
+        refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                initView();
+                refreshLayout.setRefreshing(false);
+            }
+        });
 
         return view;
     }
@@ -84,6 +110,9 @@ public class RiderDetailFragment extends Fragment implements View.OnClickListene
                 intent = new Intent(getActivity(),MainActivity.class);
                 startActivity(intent);
                 break;
+            case R.id.message:
+                intent = new Intent(getActivity(), MessageActivity.class);
+                startActivity(intent);
             default:
                 break;
         }
@@ -127,6 +156,7 @@ public class RiderDetailFragment extends Fragment implements View.OnClickListene
                                 @Override
                                 public void run() {
                                     RiderBean rider = new Gson().fromJson(res,RiderBean.class);
+                                    app.setRider_user(rider);
                                     ImageDownloadTask imgTask = new ImageDownloadTask();
                                     if(rider.getHead() != null)
                                         imgTask.execute(rider.getHead(),head);
@@ -135,6 +165,8 @@ public class RiderDetailFragment extends Fragment implements View.OnClickListene
                                         verify.setText("已认证");
                                     }
                                     order_count.setText(""+rider.getOrder_count());
+
+                                    getMessageCount();
                                 }
                             });
                         }
@@ -142,6 +174,67 @@ public class RiderDetailFragment extends Fragment implements View.OnClickListene
                 });
             }
         }).start();
-
     }
+
+    //获取该用户所有未读系统消息的数量
+    private void getMessageCount(){
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                RequestBody requestBody = new FormBody.Builder().add("user",app.getRider_phone()).add("type","rider").build();
+                Request.Builder builder = new Request.Builder();
+                Request request = builder.url(app.getUrl()+"/GetMessageCount").post(requestBody).build();
+                Call call = okHttpClient.newCall(request);
+                //执行Call
+                call.enqueue(new Callback() {
+                    @Override
+                    public void onFailure(Call call, IOException e) {
+                        getActivity().runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                Toast.makeText(getActivity(), "网络错误", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                    }
+                    @Override
+                    public void onResponse(Call call, Response response) throws IOException {
+                        final String res = response.body().string();
+                        if(res.equals("false")){
+                            getActivity().runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Toast.makeText(getActivity(), "查询失败", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                        }else{
+                            Log.e("json",res);
+                            getActivity().runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    messageList.clear();
+                                    JsonParser parser = new JsonParser();
+                                    JsonArray jsonArray = parser.parse(res).getAsJsonArray();
+                                    Log.e("jsonArray",jsonArray.toString());
+                                    Gson gson = new Gson();
+                                    for (JsonElement i:jsonArray) {
+                                        Message message = gson.fromJson(i,Message.class);
+                                        messageList.add(message);
+                                    }
+
+                                    if(messageList.size() == 0){
+                                        message_count.setVisibility(View.INVISIBLE);
+                                    }else{
+                                        message_count.setText(""+messageList.size());
+                                    }
+
+                                }
+                            });
+                        }
+                    }
+                });
+            }
+        }).start();
+    }
+
+
 }
